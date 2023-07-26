@@ -22,8 +22,8 @@ void handle_path_and_exec(char **args)
 		path_token = strtok(path, ":");
 		while (path_token != NULL)
 		{
-			snprintf(command, sizeof(command), "%s/%s", path_token,args[0]);
-			if (access(command, F_OK) == 0)
+			snprintf(command, sizeof(command), "%s", path_token);
+			if (access(command, F_OK) == 0 && access(command, X_OK) == 0)
 			{
 				pid = fork();
 				if (pid < 0)
